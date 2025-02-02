@@ -1,15 +1,29 @@
 ---
 interface Props {
   title?: string;
+  description?: string;
+  image?: string;
 }
 
-const { title = "Patrick Soo" } = Astro.props;
+const {
+  title = "Patrick Soo",
+  description = "Patrick Soo", //come up with better default description
+  image = "/images/logo.jpg", //no logo yet. Does this need to be a prop?
+} = Astro.props;
+
+const url = new URL(Astro.url.pathname, "https://patricksoo.me").href;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:url" content={url} />
+    <meta property="og:type" content="profile" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />

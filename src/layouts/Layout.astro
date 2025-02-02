@@ -1,4 +1,7 @@
 ---
+import "@fontsource/poppins";
+import "../styles/global.css";
+
 interface Props {
   title?: string;
   description?: string;
@@ -18,27 +21,66 @@ const url = new URL(Astro.url.pathname, "https://patricksoo.me").href;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- description is for normal SEO stuff, og:description/image/url is for social media like embeds -->
     <meta name="description" content={description} />
     <meta property="og:description" content={description} />
-    <meta name="twitter:description" content={description} />
     <meta property="og:image" content={image} />
+    <!-- Probably not needed but included anyways -->
     <meta property="og:url" content={url} />
+
+    <!-- Because Twitter (X) thinks it's special, this is needed sometimes to work -->
+    <meta name="twitter:description" content={description} />
+
+    <!-- More mystery SEO stuff, this tells search engines that it's a "profile" (portfolio) website -->
     <meta property="og:type" content="profile" />
+
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
-    <slot />
+  <body
+    class="font-sans font-extralight selection:bg-sky-200 selection:text-black"
+  >
+    <!-- auto container for responsiveness, px and py for breathable margins on small windows -->
+    <div class="container mx-auto my-auto max-w-xl px-8 py-8">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vestibulum
+      est at diam ultricies, at pharetra tellus luctus. Sed in quam dignissim,
+      ultrices erat in, tincidunt purus. Etiam porttitor augue vitae faucibus
+      ornare. Praesent nec mattis felis, at pellentesque urna. Praesent at
+      suscipit massa. Vestibulum ut sapien sodales, dictum felis eget, ultrices
+      orci. Phasellus risus ante, ullamcorper id enim eget, bibendum efficitur
+      libero. Etiam vestibulum bibendum vehicula. Cras congue, turpis non
+      gravida malesuada, ante felis volutpat magna, in condimentum mauris nisi
+      nec turpis. Sed pellentesque sodales tincidunt. Nam lectus nibh, hendrerit
+      et viverra id, consequat vel risus. Proin vel libero id erat elementum
+      accumsan. Fusce interdum nibh nec risus aliquet, sit amet sollicitudin
+      elit lacinia. Suspendisse potenti. Curabitur sed lacus tortor. Duis
+      blandit neque vitae vestibulum ultrices. Mauris eget egestas augue, et
+      vulputate magna. Quisque rutrum velit consectetur magna mollis,
+      sollicitudin viverra augue ultrices. Nunc fermentum ante dictum neque
+      viverra, ac pellentesque erat accumsan. In hac habitasse platea dictumst.
+      Nam nec tempor neque. Quisque placerat metus in nisl hendrerit lobortis.
+      Aenean tincidunt gravida ligula non facilisis. Pellentesque habitant morbi
+      tristique senectus et netus et malesuada fames ac turpis egestas. Mauris
+      nec orci ante. Duis vel cursus massa. Praesent sit amet massa dolor.
+      Aenean interdum est sed augue tristique molestie. Proin maximus suscipit
+      metus viverra sodales. Phasellus tincidunt, diam finibus ultricies
+      viverra, neque nisi viverra turpis, id malesuada augue tortor convallis
+      augue. Integer a faucibus ex. Suspendisse pellentesque arcu velit, vel
+      efficitur ante fringilla vitae. Maecenas lacus est, bibendum et malesuada
+      tincidunt, commodo vel metus. Nulla congue aliquet nunc, sit amet
+      ullamcorper dolor interdum eu. Vestibulum in ipsum lorem. Nulla a est ac
+      sapien fermentum hendrerit. Aenean sit amet lacus ac metus feugiat
+      feugiat. Donec tempor quis est in accumsan. Proin commodo felis arcu, et
+      pharetra ex congue vitae. Fusce et fermentum tellus, nec sollicitudin
+      nunc. In hac habitasse platea dictumst. Duis ac dignissim nulla. Etiam
+      tempus vel metus at varius. Proin faucibus sagittis leo, eu sollicitudin
+      augue dignissim nec. Curabitur non pulvinar ante. Donec rutrum elementum
+      velit et rutrum. In hac habitasse platea dictumst. Nulla aliquet sit amet
+      nulla eu elementum.
+      <slot />
+    </div>
   </body>
 </html>
-
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>

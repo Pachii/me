@@ -27,16 +27,8 @@ const {
       rel="noopener noreferrer"
       class="hover:bg-sky-200 transition-colors duration-300 inline-flex items-center"
     >
-      <span>{title}</span>
-      {
-        showIcon && (
-          <span
-            class="iconify"
-            data-icon="eva:diagonal-arrow-right-up-fill"
-            data-inline="true"
-          />
-        )
-      }
+      <span>{title}&nbsp;</span>
+      {showIcon && "↗"}
     </a>
   </h3>
   <img src={image} alt={alt} class="w-full object-cover" />

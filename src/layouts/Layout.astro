@@ -42,8 +42,10 @@ const url = new URL(Astro.url.pathname, "https://patricksoo.me").href;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
   </head>
-  <body class="min-h-screen flex flex-col selection:bg-sky-200 bg-gray-50">
+  <body class="min-h-screen flex flex-col selection:bg-sky-300 bg-gray-50">
     <!-- auto container for responsiveness, px and py for breathable margins on small windows -->
     <div class="container mx-auto max-w-xl px-4 flex flex-col flex-grow">
       <Header />

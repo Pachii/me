@@ -1,13 +1,25 @@
 ---
 import "@fontsource/ibm-plex-mono";
+import reactPkg from "react/package.json";
+
+const astroVersion = Astro.generator.replace("Astro ", "");
+const reactVersion = reactPkg.version.replace(" ", "");
+
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="bg-gray-50 py-4">
-  <p class="text-gray-400 text-[9px] text-center font-ibm">
-    &copy; {currentYear} Patrick Soo. Built lightweight with <a
+  <p class="text-gray-400 text-[9px] text-center font-ibm select-none">
+    &copy; {currentYear} Patrick Soo. Built lightweight with
+    <a
       href="https://astro.build/"
       class="hover:bg-gray-200 transition-colors duration-300">Astro</a
-    >.
+    >
+    {astroVersion} and
+    <a
+      href="https://react.dev/"
+      class="hover:bg-gray-200 transition-colors duration-300">React</a
+    >
+    {reactVersion}.
   </p>
 </footer>

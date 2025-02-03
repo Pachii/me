@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import EmailCopyButton from "../components/EmailCopyButton";
 ---
 
 <Layout>
@@ -25,19 +26,25 @@ import Layout from "../layouts/Layout.astro";
     <!-- Contact Section -->
     <section id="contact">
       <span class="bg-sky-100">contact</span>
-      <p class="leading-relaxed">
-        I'd love to connect! Feel free to send me an email at
-        <a href="mailto:patrick@example.com" class="text-blue-500 underline"
-          >patrick@example.com</a
-        >
-        or connect with me on
+
+      <div class="flex items-center space-x-2">
+        <EmailCopyButton client:load email="pach@gatech.edu" />
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <!-- LinkedIn Icon (non-clickable) -->
+        <span class="iconify" data-icon="mdi:linkedin" data-inline="false"
+        ></span>
+        <!-- Only the text is clickable -->
         <a
           href="https://linkedin.com/in/patrick-soo"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-blue-500 underline">LinkedIn</a
-        >.
-      </p>
+          class="hover:bg-sky-200 transition-colors duration-300"
+        >
+          LinkedIn
+        </a>
+      </div>
     </section>
   </main>
 </Layout>

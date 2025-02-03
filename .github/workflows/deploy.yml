@@ -3,14 +3,15 @@ name: Deploy Astro Website
 on:
   push:
     branches:
-      - main # Change if you deploy from a different branch
+      - main # Change this if deploying from another branch
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout the repository
+      # Using Github Actions CI (build on GitHub)
+      # 1. Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -24,26 +25,29 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 4. Build the Astro site
+      # 4. Build the Astro site (creates the dist/ folder)
       - name: Build site
         run: npm run build
 
-      # 5. Deploy to server via SSH
-      - name: Deploy to server
-        uses: appleboy/ssh-action@v0.1.5
+      # 5. Deploy the built files to server using burnett01/rsync-deployments
+      - name: Deploy built files via rsync
+        uses: burnett01/rsync-deployments@7.0.2
+        with:
+          switches: "-avzr --delete"
+          path: "dist/" # The local build output folder
+          remote_path: "/home/ubuntu/me" # The target directory on your server
+          remote_host: ${{ secrets.SERVER_HOST }}
+          remote_user: ${{ secrets.SERVER_USER }}
+          remote_key: ${{ secrets.SERVER_SSH_KEY }}
+          remote_port: ${{ secrets.SERVER_PORT }} # Optional if you’re not using the default port
+
+      # 6. Restart the Node process (if using PM2) to serve the new build
+      - name: Restart Node process on server
+        uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            cd /home/ubuntu/me  # Change this to your deployment directory
-            # Option A: Use git to pull changes (if the repo is cloned on the server)
-            git pull origin main
-            # Option B: Alternatively, you could remove the old build and copy over the new one.
-            # For example:
-            # rm -rf build
-            # mkdir -p build
-            # (You could use rsync in combination with appleboy/rsync-action if needed)
-            # Restart your server if required (e.g., using pm2 or systemctl)
-            pm2 restart your-site || echo "No process to restart"
+            pm2 restart astro-site || echo "No process to restart"

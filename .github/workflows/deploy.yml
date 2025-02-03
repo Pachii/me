@@ -3,14 +3,13 @@ name: Deploy Astro Website
 on:
   push:
     branches:
-      - main # Change this if deploying from another branch
+      - main # Change if deploying from another branch
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Using Github Actions CI (build on GitHub)
       # 1. Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -29,20 +28,31 @@ jobs:
       - name: Build site
         run: npm run build
 
-      # 5. Deploy the built files to server using burnett01/rsync-deployments
-      - name: Deploy built files via rsync
+      # 5. Prepare a deploy folder with built files and package files
+      - name: Prepare deploy folder
+        run: |
+          rm -rf deploy
+          mkdir deploy
+          # Copy everything from dist/ into deploy/
+          cp -r dist/* deploy/
+          # Also copy package.json and package-lock.json (if exists)
+          cp package.json deploy/
+          [ -f package-lock.json ] && cp package-lock.json deploy/ || echo "No package-lock.json found"
+
+      # 6. Deploy the combined deploy folder to your server using rsync
+      - name: Deploy deploy folder via rsync
         uses: burnett01/rsync-deployments@7.0.2
         with:
           switches: "-avzr --delete"
-          path: "dist/" # The local build output folder
+          path: "deploy/" # The local deploy folder
           remote_path: "/home/ubuntu/me" # The target directory on your server
           remote_host: ${{ secrets.SERVER_HOST }}
           remote_user: ${{ secrets.SERVER_USER }}
           remote_key: ${{ secrets.SERVER_SSH_KEY }}
-          remote_port: ${{ secrets.SERVER_PORT }} # Optional if you’re not using the default port
+          remote_port: ${{ secrets.SERVER_PORT }}
 
-      # 6. Restart the Node process (if using PM2) to serve the new build
-      - name: Restart Node process on server
+      # 7. Restart the Node process (if using PM2) to serve the new build
+      - name: Install dependencies and restart server
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -50,4 +60,6 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
+            cd /home/ubuntu/me
+            npm install --production
             pm2 restart astro-site || echo "No process to restart"

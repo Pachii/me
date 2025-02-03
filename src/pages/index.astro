@@ -3,17 +3,21 @@ import Layout from "../layouts/Layout.astro";
 import EmailCopyButton from "../components/EmailCopyButton";
 ---
 
-<Layout>
+<Layout pageIntro="Hi, I'm Patrick,">
   <!-- Main content with vertical spacing between sections -->
   <main class="space-y-16">
     <!-- Presently Section -->
     <section id="presently">
       <span class="bg-sky-100">presently</span>
       <p class="leading-relaxed">
-        Fourth-year undergraduate computer science student at Georgia Tech 🐝,
-        pursuing a master's degree starting Fall 2025. Concentrations of study:
-        Intelligence (AI, ML) and Information Internetworks (Distributed
-        Systems, Information Management).
+        I'm a fourth-year Computer Science student at Georgia Tech 🐝,
+        graduating in Spring 2025 and continuing with the Master's program in
+        the fall. My interests span artificial intelligence, machine learning,
+        and distributed systems, but more broadly, I enjoy solving unique
+        problems and building impactful solutions. Beyond academics, I love
+        creating, organizing, and bringing ideas to life. Whether it's leading
+        projects, designing products, or managing teams, I thrive in turning
+        concepts into reality and making things happen.
       </p>
     </section>
 
@@ -28,6 +32,8 @@ import EmailCopyButton from "../components/EmailCopyButton";
       <span class="bg-sky-100">contact</span>
 
       <div class="flex items-center space-x-2">
+        <span class="iconify" data-icon="mdi:email-outline" data-inline="false"
+        ></span>
         <EmailCopyButton client:load email="pach@gatech.edu" />
       </div>
 

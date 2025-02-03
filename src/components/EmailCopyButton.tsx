@@ -16,12 +16,6 @@ export default function ContactButton({ email }: Props) {
 
   return (
     <div className="flex items-center space-x-2">
-      {/* Email Icon using Iconify */}
-      <span
-        className="iconify"
-        data-icon="mdi:email-outline"
-        data-inline="false"
-      ></span>
       {/* Click-to-copy button */}
       <button
         type="button"

@@ -1,5 +1,11 @@
 ---
+import "@fontsource/playfair/500.css";
 
+interface Props {
+  pageIntro: string;
+}
+
+const { pageIntro } = Astro.props;
 ---
 
 <header class="flex items-center justify-between mt-8 mb-8">
@@ -37,3 +43,4 @@
     </ul>
   </nav>
 </header>
+<h1 class="text-4xl font-playfair mb-16">{pageIntro}</h1>

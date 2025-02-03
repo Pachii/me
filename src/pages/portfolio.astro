@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PortfolioProject from "../components/PortfolioProject.astro";
+---
+
+<Layout title="Patrick Soo - Portfolio" pageIntro="and this is my portfolio.">
+  <!-- Main content with vertical spacing between sections -->
+  <main class="space-y-16">
+    <!-- Computer Science Projects Section -->
+    <section id="computer-science">
+      <span class="bg-sky-100">computer science</span>
+
+      <!-- Example Project with the arrow icon -->
+      <PortfolioProject
+        title="Munch"
+        link="https://github.gatech.edu/Food-Eaters/munch"
+        image="/portfolio/cs/munch.png"
+        description="Restaurant Discovery Personalized for your Palate."
+      />
+    </section>
+
+    <!-- Design Section -->
+    <section id="design" class="space-y-12">
+      <span class="bg-sky-100">design</span>
+
+      <!-- Reuse the component for other projects -->
+      <PortfolioProject
+        title="PBTFans Umbra"
+        link="https://mekibo.com/products/pbtfans-umbra-in-stock?variant=44933335744800"
+        image="/portfolio/design/pbtfans-umbra.jpeg"
+        description="Pokémon inspired keycap set based on a refresh of a previous project - produced by Chinese plastics manufacturer PBTFans and distribution with international online storefronts including Mekibo (US), KBDFans (China), as well as numerous other regional storefronts. Over 2000 units sold globally with revenue of over 250,000 USD."
+      />
+
+      <PortfolioProject
+        title="GMK White-on-Black Katakana"
+        link="https://drop.com/buy/drop-gmk-white-on-black-katakana-custom-keycap-set"
+        image="/portfolio/design/gmk-katakana.png"
+        description="Keycap set inspired by the Japanese writing system. Organized manufacturing with German plastics maker GMK in collaboration with Large US-based international online storefront Drop (Corsair, Inc.) handling continued sales and distribution. Over 2500 units sold globally to date with revenue of over 350,000 USD. All profits from the first five months of pre-orders (~3,000 USD) donated to nonprofit organizations Equal Justice Initiative, WHO COVID-19 Response Fund, and Japanese American Citizens League."
+      />
+
+      <PortfolioProject
+        title="EPBT Ivory"
+        link="https://geekhack.org/index.php?topic=106722.0"
+        image="/portfolio/design/epbt-ivory.jpeg"
+        description="Elephant themed charity keycap set produced by Chinese plastics manufacturer EnjoyPBT and distribution with online storefronts Kono (US), Deskhero (Canada), MyKeyboard (Europe), Daily Clack (Australia), as well as a metal artisan edition manufactured by Rama Works. Over 1600 units sold globally with revenue of over 200,000 USD. 100% of profits from sales (24,220 USD) donated to 501(c)(3) nonprofit organization Save The Elephants."
+      />
+
+      <PortfolioProject
+        title="GMK Umbra"
+        link="https://geekhack.org/index.php?topic=103209.0"
+        image="/portfolio/design/gmk-umbra.png"
+        description="Keycap set inspired by a character from the Pokémon franchise. Organized manufacturing with German plastics maker GMK, and distribution with online storefronts Kono (US), Deskhero (Canada), MyKeyboard (Europe), Daily Clack (Australia), as well as metal artisan editions manufactured by Rama Works. Over 300 units sold globally at the end of pre-orders with total revenue over 25,000 USD."
+      />
+    </section>
+  </main>
+</Layout>

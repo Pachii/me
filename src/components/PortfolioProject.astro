@@ -1,0 +1,53 @@
+---
+export interface Props {
+  title: string;
+  link: string;
+  image: string;
+  alt?: string;
+  description: string;
+  /** Optionally show the inline SVG arrow icon */
+  showIcon?: boolean;
+}
+
+const {
+  title,
+  link,
+  image,
+  alt = title,
+  description,
+  showIcon = true,
+} = Astro.props;
+---
+
+<article class="flex flex-col">
+  <h3 class="mt-4 text-xl font-medium mb-2">
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="hover:bg-sky-200 transition-colors duration-300 inline-flex items-center"
+    >
+      <span>{title}</span>
+      {
+        showIcon && (
+          <svg
+            class="w-3 h-3"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+              d="M13 3h8m0 0v8m0-8L10 14"
+            />
+          </svg>
+        )
+      }
+    </a>
+  </h3>
+  <img src={image} alt={alt} class="w-full object-cover" />
+  <p class="mt-2 text-base text-gray-600" set:html={description} />
+</article>

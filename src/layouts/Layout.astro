@@ -9,12 +9,14 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  pageIntro: string;
 }
 
 const {
   title = "Patrick Soo",
   description = "Patrick Soo", //come up with better default description
   image = "/images/logo.jpg", //no logo yet. Does this need to be a prop?
+  pageIntro,
 } = Astro.props;
 
 const url = new URL(Astro.url.pathname, "https://patricksoo.me").href;
@@ -48,8 +50,8 @@ const url = new URL(Astro.url.pathname, "https://patricksoo.me").href;
   <body class="min-h-screen flex flex-col selection:bg-sky-300 bg-gray-50">
     <!-- auto container for responsiveness, px and py for breathable margins on small windows -->
     <div class="container mx-auto max-w-xl px-4 flex flex-col flex-grow">
-      <Header />
-      <main class="flex-grow">
+      <Header pageIntro={pageIntro} />
+      <main class="flex-grow mb-48">
         <slot />
       </main>
       <Footer />

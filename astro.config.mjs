@@ -12,9 +12,7 @@ export default defineConfig({
       host: true, // Allows external access (0.0.0.0)
       port: 4321, // Ensure Astro runs on the correct port
       strictPort: false, // Allows other ports if 4321 is taken
-    },
-    preview: {
-      allowedHosts: ["patricksoo.me"], // Allow your domain
+      allowedHosts: true, // Allow your domain
     },
   },
 

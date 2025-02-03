@@ -1,0 +1,49 @@
+name: Deploy Astro Website
+
+on:
+  push:
+    branches:
+      - main # Change if you deploy from a different branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Set up Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16" # or your preferred Node version
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Build the Astro site
+      - name: Build site
+        run: npm run build
+
+      # 5. Deploy to server via SSH
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            cd /home/ubuntu/me  # Change this to your deployment directory
+            # Option A: Use git to pull changes (if the repo is cloned on the server)
+            git pull origin main
+            # Option B: Alternatively, you could remove the old build and copy over the new one.
+            # For example:
+            # rm -rf build
+            # mkdir -p build
+            # (You could use rsync in combination with appleboy/rsync-action if needed)
+            # Restart your server if required (e.g., using pm2 or systemctl)
+            pm2 restart your-site || echo "No process to restart"

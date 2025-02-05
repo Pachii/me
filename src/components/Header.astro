@@ -6,20 +6,29 @@ interface Props {
 }
 
 const { pageIntro } = Astro.props;
+const currentPath = Astro.url.pathname.slice(1);
 ---
 
-<header class="flex items-center justify-between mt-8 mb-8">
+<header class="flex items-center justify-between mt-8 mb-16">
   <!-- Name on the left as a bold link to the homepage -->
-  <a href="/" class="font-bold text-xl">Patrick Soo</a>
+  <div class="">
+    <a href="/" class="font-bold">/patrick_soo/</a><span>{currentPath}</span>
+  </div>
 
   <nav>
     <ul class="flex space-x-6">
-      <li>
-        <a
-          href="/portfolio"
-          class="hover:bg-sky-200 transition-colors duration-300">portfolio</a
-        >
-      </li>
+      {
+        "/" + currentPath !== "/portfolio" && (
+          <li>
+            <a
+              href="/portfolio"
+              class="hover:bg-sky-200 transition-colors duration-300"
+            >
+              portfolio
+            </a>
+          </li>
+        )
+      }
       <li>
         <!-- open resume in new tab. _blank for new tab, rel for security purposes -->
         <a

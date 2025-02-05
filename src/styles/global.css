@@ -6,3 +6,6 @@
   --font-playfair: "Playfair";
 }
 
+html {
+  overflow-y: scroll;
+}

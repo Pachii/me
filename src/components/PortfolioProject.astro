@@ -31,6 +31,8 @@ const {
       {showIcon && "↗"}
     </a>
   </div>
-  <img src={image} alt={alt} class="w-full object-cover" />
-  <p class="mt-2 text-base text-gray-600" set:html={description} />
+  <div class="w-full">
+    <img src={image} alt={alt} />
+    <p class="mt-2 text-base text-gray-600" set:html={description} />
+  </div>
 </article>

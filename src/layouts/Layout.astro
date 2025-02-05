@@ -51,7 +51,7 @@ const url = new URL(Astro.url.pathname, "https://patricksoo.me").href;
     <!-- auto container for responsiveness, px and py for breathable margins on small windows -->
     <div class="container mx-auto max-w-xl px-4 flex flex-col flex-grow">
       <Header pageIntro={pageIntro} />
-      <main class="flex-grow mb-48">
+      <main class="flex-grow mb-16">
         <slot />
       </main>
       <Footer />

@@ -6,13 +6,16 @@ interface Props {
 }
 
 const { pageIntro } = Astro.props;
-const currentPath = Astro.url.pathname.slice(1);
+// LOCAL server is formatted like /<path>. WEB server is formatted like /<path>/
+const currentPath = Astro.url.pathname.replace(/^\//, "");
 ---
 
 <header class="flex items-center justify-between mt-8 mb-16">
   <!-- Name on the left as a bold link to the homepage -->
   <div class="">
-    <a href="/" class="font-bold">/patrick_soo/</a><span>{currentPath}</span>
+    <a href="/" class="font-bold">/patrick_soo</a><span
+      >{currentPath && "/" + currentPath}</span
+    >
   </div>
 
   <nav>
@@ -24,7 +27,7 @@ const currentPath = Astro.url.pathname.slice(1);
               href="/portfolio"
               class="hover:bg-sky-200 transition-colors duration-300"
             >
-              portfolio
+              /portfolio
             </a>
           </li>
         )
@@ -35,12 +38,24 @@ const currentPath = Astro.url.pathname.slice(1);
           href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:bg-sky-200 transition-colors duration-300">résumé</a
+          class="hover:bg-sky-200 transition-colors duration-300 flex items-center"
+          >résumé<svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-arrow-up-right opacity-50"
+            ><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg
+          ></a
         >
       </li>
 
-      <li>
-        <!-- open resume in new tab. _blank for new tab, rel for security purposes -->
+      <!-- <li>
         <a
           href="/coverletter.pdf"
           target="_blank"
@@ -48,7 +63,7 @@ const currentPath = Astro.url.pathname.slice(1);
           class="hover:bg-sky-200 transition-colors duration-300"
           >cover letter</a
         >
-      </li>
+      </li> -->
     </ul>
   </nav>
 </header>

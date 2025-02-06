@@ -7,7 +7,7 @@ interface Props {
 
 const { pageIntro } = Astro.props;
 // LOCAL server is formatted like /<path>. WEB server is formatted like /<path>/
-const currentPath = Astro.url.pathname.replace(/^\//, "");
+const currentPath = Astro.url.pathname.replace(/^\/|\/$/g, "");
 ---
 
 <header class="flex items-center justify-between mt-8 mb-16">
@@ -21,7 +21,7 @@ const currentPath = Astro.url.pathname.replace(/^\//, "");
   <nav>
     <ul class="flex space-x-6">
       {
-        "/" + currentPath !== "/portfolio" && (
+        currentPath !== "portfolio" && (
           <li>
             <a
               href="/portfolio"

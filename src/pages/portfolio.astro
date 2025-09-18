@@ -8,10 +8,31 @@ import PortfolioProject from "../components/PortfolioProject.astro";
   <main class="space-y-16">
     <!-- Computer Science Projects Section -->
     <section id="computer-science">
-      <span class="bg-sky-100">computer science</span>
+      <span class="bg-sky-100">technical projects</span>
+
 
       <PortfolioProject
-        title="Current Crisis - 'Gaming for Electric Power Grids'"
+        title="Current Crisis Docs"
+        tags={[
+        { name: "AstroJS", category: "cs" },
+        { name: "MDXJS", category: "cs" },
+        { name: "nginx", category: "cs" },
+        { name: "CI/CD", category: "cs", details: "GitHub Actions<br>Oracle Cloud"},
+        { name: "Technical Writing", category: "pm", details: "System documentation<br>Design specifications<br>Onboarding guides<br>Process documentation"},
+        ]}
+        link="https://docs.currentcrisis.net/"
+        image="/portfolio/cs/docs.png"
+        description="A dedicated technical documentation site developed to support the Current Crisis project (below). Built with AstroJS and MDX to allow flexible authoring, the site runs on a cloud server with Nginx for stability and performance. Automated integration and deployment through GitHub Actions ensures the platform remains continuously updated. Containing more than 10,000 words of technical and design documentation and growing, it consolidates 3+ years of project knowledge into a single authoritative resource, streamlining onboarding, sustaining continuity across contributors, and is prepared to serve hundreds of students across future semesters. Note: If you are a recruiter, a password may be included in the application."
+      />
+
+      <PortfolioProject
+        title="Current Crisis - Power Grid Simulation"
+        tags={[
+        { name: "Unity Engine", category: "cs" },
+        { name: "C#", category: "cs" },
+        { name: "Project Management", category: "pm", details: "Team leadership<br>Agile sprints<br>Task tracking<br>Cross-functional coordination<br>Process improvement<br>Stakeholder communication" },
+        { name: "Product Design", category: "pm" , details: "Game design<br>Educational design<br>Requirements documents"},
+        ]}
         link="https://currentcrisis.net"
         image="/portfolio/cs/currentcrisis.png"
         description="An educational game sponsored by Sandia National Laboratories, designed to teach power grid resiliency through interactive decision-making. As a lead in game design and project management, I am working on shaping gameplay mechanics that simulate real-world disaster response, putting players in the role of a power grid operator balancing infrastructure stability, public safety, and environmental risks. Beyond public education, the game also will serve as a research tool, collecting player data to help train machine learning models for optimizing real-world disaster mitigation strategies. Developed as part of Georgia Tech’s VIP program, iterating on both gameplay systems and Agile workflows to refine the experience each semester."
@@ -19,13 +40,27 @@ import PortfolioProject from "../components/PortfolioProject.astro";
 
       <PortfolioProject
         title="Munch - Restaurant Review App"
-        link=""
+        tags={[
+        { name: "React Native", category: "cs" },
+        { name: "Tailwind", category: "cs" },
+        { name: "Firebase", category: "cs" },
+        { name: "Google Maps API", category: "cs" },
+        { name: "Product Design", category: "pm", details: "UI/UX<br>A/B testing<br>Personalization<br>User research"},
+        ]}
         image="/portfolio/cs/munch.png"
         description="A personalized restaurant discovery app that tailors recommendations based on user preferences. Unlike traditional review platforms, Munch refines ratings dynamically, prioritizing aspects like taste, service, or value according to each user’s profile. Built with React Native and Expo, it integrates Google Maps Places API for real restaurant listings and Firebase for user authentication and reviews. A companion Chrome extension overlays personalized scores onto Google Maps for seamless browsing. Developed through iterative A/B testing and UI refinements, Munch enhances dining discovery by offering personalized, data-driven recommendations beyond generic crowd-sourced ratings."
       />
 
       <PortfolioProject
         title="GeoGuessr Machine Learning Classification Model"
+        tags={[
+        { name: "Python", category: "cs" },
+        { name: "TensorFlow", category: "cs" },
+        { name: "scikit-learn", category: "cs" },
+        { name: "DenseNet121", category: "cs" },
+        { name: "CNN", category: "cs" },
+        { name: "KNN", category: "cs" },
+        ]}
         link="/geoguessr-report.pdf"
         image="/portfolio/cs/geo.png"
         description="A machine learning project using CNNs and transfer learning to classify Google Street View images by country. Built on a 50,000-image dataset, we optimized performance through data cleaning, preprocessing, and model tuning. Despite challenges like class imbalance, the project demonstrated the impact of data quality on AI-driven geolocation and provided insights into improving image-based classification models."
@@ -34,7 +69,7 @@ import PortfolioProject from "../components/PortfolioProject.astro";
 
     <!-- Design Section -->
     <section id="design">
-      <span class="bg-sky-100">design</span>
+      <span class="bg-sky-100">design projects</span>
 
       <PortfolioProject
         title="PBTFans Umbra"
